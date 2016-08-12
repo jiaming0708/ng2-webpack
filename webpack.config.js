@@ -5,8 +5,7 @@ var path = require("path");
 module.exports = {
   entry: {
     vendor: './src/vendor.ts',
-    app: './src/main.ts',
-    scss: './scss/main.scss'
+    app: './src/main.ts'
   },
   output: {
     path: __dirname,
@@ -33,6 +32,6 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"./dist/vendor.bundle.js"),
-    new ExtractTextPlugin("./dist/[name].css")
+    new ExtractTextPlugin("./dist/style.css")
   ]
 }
