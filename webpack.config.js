@@ -1,5 +1,6 @@
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require("path");
 
 module.exports = {
@@ -27,11 +28,16 @@ module.exports = {
       },{
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+      }, {
+        test: /\.html$/,
+        loader: 'raw-loader',
+        exclude: [path.resolve(__dirname, "index.html")]
       }
     ]
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"./dist/vendor.bundle.js"),
-    new ExtractTextPlugin("./dist/style.css")
+    new ExtractTextPlugin("./dist/style.css"),
+    new HtmlWebpackPlugin({ template: 'index.html' })
   ]
 }
