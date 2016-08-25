@@ -13,15 +13,18 @@ module.exports = {
     filename: './dist/[name].bundle.js'
   },
   resolve: {
-    extensions: ['', '.ts', '.js']
+    extensions: ['', '.ts', '.js', '.json'],
+    modulesDirectories: ['node_modules']
   },
   devtool: 'source-map',
   module: {
     loaders: [
       {
-        test: /\.ts/,
-        loaders: ['ts-loader'],
-        exclude: /node_modules/
+        test: /\.ts$/,
+        loaders: [
+          'awesome-typescript-loader'
+        ],
+        exclude: [/node_modules/,/\.(spec|e2e)\.ts$/]
       },{
         test: /\.css$/,
         loader: 'style!css'
